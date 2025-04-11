@@ -1,0 +1,36 @@
+{
+    "events": [
+      {
+        "id": 1,
+        "name": "Tech & Tacos Meetup",
+        "location": "Austin, TX",
+        "date": "2025-05-18",
+        "time": "6:30 PM",
+        "attendees": [
+          { "id": 101, "name": "Samantha Cruz", "email": "sam.cruz@example.com" },
+          { "id": 102, "name": "Leo Zhang", "email": "leo.zhang@example.com" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "St. Louis Startup Happy Hour",
+        "location": "St. Louis, MO",
+        "date": "2025-05-20",
+        "time": "5:00 PM",
+        "attendees": [
+          { "id": 103, "name": "Jordan Malik", "email": "jordan.malik@example.com" },
+          { "id": 104, "name": "Emily Reyes", "email": "emily.reyes@example.com" },
+          { "id": 105, "name": "Chris Dowd", "email": "cdowd@example.com" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Designers Unwind: Coffee + Collab",
+        "location": "Portland, OR",
+        "date": "2025-05-23",
+        "time": "10:00 AM",
+        "attendees": []
+      }
+    ]
+  }
+  
