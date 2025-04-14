@@ -9,7 +9,8 @@
         "attendees": [
           { "id": 101, "name": "Samantha Cruz", "email": "sam.cruz@example.com" },
           { "id": 102, "name": "Leo Zhang", "email": "leo.zhang@example.com" }
-        ]
+        ],
+        "picture": "/TestPictures/1.jpg"
       },
       {
         "id": 2,
@@ -21,7 +22,8 @@
           { "id": 103, "name": "Jordan Malik", "email": "jordan.malik@example.com" },
           { "id": 104, "name": "Emily Reyes", "email": "emily.reyes@example.com" },
           { "id": 105, "name": "Chris Dowd", "email": "cdowd@example.com" }
-        ]
+        ],
+        "picture": "/TestPictures/2.jpg"
       },
       {
         "id": 3,
@@ -29,7 +31,35 @@
         "location": "Portland, OR",
         "date": "2025-05-23",
         "time": "10:00 AM",
-        "attendees": []
+        "attendees": [],
+        "picture": "/TestPictures/3.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Chicago Code & Coffee",
+        "location": "Chicago, IL",
+        "date": "2025-05-25",
+        "time": "9:00 AM",
+        "attendees": [],
+        "picture": "/TestPictures/4.jpg"
+      },
+      {
+        "id": 5,
+        "name": "NYC UX Happy Hour",
+        "location": "New York, NY",
+        "date": "2025-05-27",
+        "time": "6:00 PM",
+        "attendees": [],
+        "picture": "/TestPictures/5.jpg"
+      },
+      {
+        "id": 6,
+        "name": "Remote Dev Sync",
+        "location": "Online",
+        "date": "2025-05-29",
+        "time": "12:00 PM",
+        "attendees": [],
+        "picture": "/TestPictures/5.jpg"
       }
     ]
   }
