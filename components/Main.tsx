@@ -70,7 +70,11 @@ const Main = () => {
                   </ul>
                 )}
               </div>
-              <button className="bg-[#7C3AED] rounded-r-md h-12 w-12 flex items-center justify-center">
+              <button 
+                //TODO - add search API call
+                onClick={() => alert("clicked")}
+                className="bg-[#7C3AED] hover:bg-purple-900 transition-colors duration-200 rounded-r-md h-12 w-12 flex items-center justify-center"
+              >
                 <SearchOutline color="#FFFFFF" height="24px" width="24px" />
               </button>
             </div>
