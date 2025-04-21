@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AppSkeleton from "@/components/AppSkeleton";
 
 export const metadata: Metadata = {
   title: "GatherWise",
@@ -16,9 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen font-sans">
-        <Navbar />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <AppSkeleton>{children}</AppSkeleton>
       </body>
     </html>
   );
