@@ -7,24 +7,27 @@ import SignUp from './SignUp';
 import SignIn from './SignIn';
 
 const AppSkeleton = ({ children }: { children: React.ReactNode }) => {
-    const [showSignIn, setShowSignIn] = useState(false);
-    const [showSignUp, setShowSignUp] = useState(false);
+    const [authMode, setAuthmode] = useState<"sign-in" | "sign-up" | null>(null);
   
     return (
-      <div className="relative font-sans">
-        <Navbar onSignIn={() => setShowSignIn(true)} onSignUp={() => setShowSignUp(true)} />
-  
-        <Modal isOpen={showSignIn} onClose={() => setShowSignIn(false)}>
-          <SignIn />
+      <>
+        <Navbar 
+          onSignIn={() => setAuthmode("sign-in")}
+          onSignUp={() => setAuthmode("sign-up")}
+        />
+
+        <Modal isOpen={authMode !== null} onClose={() => setAuthmode(null)}>
+          {authMode === "sign-in" && (
+            <SignIn setAuthMode={setAuthmode}/>
+          )}
+
+          {authMode === "sign-up" && (
+            <SignUp setAuthMode={setAuthmode}/>
+          )}
         </Modal>
-  
-        <Modal isOpen={showSignUp} onClose={() => setShowSignUp(false)}>
-          <SignUp />
-        </Modal>
-  
         {children}
         <Footer />
-      </div>
+      </>
     );
 }
 
