@@ -1,15 +1,29 @@
 "use client"
 import React, { useState } from 'react'
 import Image from 'next/image'
+import { signUp } from '@/utils/api';
 
 type SignUpProps = {
-  setAuthMode: (mode: "sign-in" | "sign-up") => void;
+  setAuthMode: (mode: "sign-in" | "sign-up" | null) => void;
 }
 
 const SignUp = ({ setAuthMode }: SignUpProps) => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
+  const handleSignUp = async() => {
+    try {
+      const user = await signUp(userName, email, password);
+      console.log("Signed up: ", user);
+      localStorage.setItem("userId", user.userId);
+      localStorage.setItem("accessToken", user.accessToken);
+      localStorage.setItem("userName", user.name);
+      setAuthMode(null);
+    } catch(err: any) {
+      console.error(err.message);
+    }
+  }
   return (
     <div>
         <Image 
@@ -47,7 +61,7 @@ const SignUp = ({ setAuthMode }: SignUpProps) => {
           value={password || ""}
         />
 
-        <button className="bg-[#7C3AED] text-white w-full py-2 rounded">Create Account</button>
+        <button onClick={handleSignUp} className="bg-[#7C3AED] text-white w-full py-2 rounded">Create Account</button>
         <p className='text-sm mt-3 text-center'>Already a member? <button onClick={() => setAuthMode("sign-in")} className='bg-transparent text-[#7C3AED]'>Log in</button></p>
     
         <p className='mt-10 text-xs text-center'>By signing up, you agree to Terms of Service, Privacy Policy, and Cookie Policy.</p>
