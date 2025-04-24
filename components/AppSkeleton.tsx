@@ -5,24 +5,29 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
+import ForgotPassword from './ForgotPassword';
 
 const AppSkeleton = ({ children }: { children: React.ReactNode }) => {
-    const [authMode, setAuthmode] = useState<"sign-in" | "sign-up" | null>(null);
+    const [authMode, setAuthMode] = useState<"sign-in" | "sign-up" | "forgot-password" | null>(null);
   
     return (
       <>
         <Navbar 
-          onSignIn={() => setAuthmode("sign-in")}
-          onSignUp={() => setAuthmode("sign-up")}
+          onSignIn={() => setAuthMode("sign-in")}
+          onSignUp={() => setAuthMode("sign-up")}
         />
 
-        <Modal isOpen={authMode !== null} onClose={() => setAuthmode(null)}>
+        <Modal isOpen={authMode !== null} onClose={() => setAuthMode(null)}>
           {authMode === "sign-in" && (
-            <SignIn setAuthMode={setAuthmode}/>
+            <SignIn setAuthMode={setAuthMode}/>
           )}
 
           {authMode === "sign-up" && (
-            <SignUp setAuthMode={setAuthmode}/>
+            <SignUp setAuthMode={setAuthMode}/>
+          )}
+
+          {authMode === "forgot-password" && (
+            <ForgotPassword onBack={() => setAuthMode("sign-in")} />
           )}
         </Modal>
         {children}

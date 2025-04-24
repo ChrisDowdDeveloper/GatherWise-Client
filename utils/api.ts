@@ -26,3 +26,31 @@ export const signUp = async (name: string, email: string, password: string) => {
     
     return res.json();
 }
+
+export const signIn = async ( email: string, password: string) => {
+    const res = await fetch(`${backendUrl}/auth/signin`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+    });
+
+    if(!res.ok) throw new Error("Signin failed");
+
+    return res.json();
+}
+
+export const forgotPassword = async(email: string) => {
+    const res = await fetch(`${backendUrl}/auth/forgotPassword`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+    });
+
+    if(!res.ok) throw new Error("Forgot Password request failed");
+
+    return res.json();
+}
