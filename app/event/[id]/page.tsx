@@ -3,13 +3,21 @@ import { Event } from "@/types";
 import { useEffect, useState } from "react";
 import testData from "@/utils/fakeJsonDate.json";
 
+type Response = "yes" | "no";
+
 const SingleEventPage = () => {
   const [event, setEvent] = useState<Event | undefined>(undefined);
+  const [response, setResponse] = useState<Response | null>(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     const found = testData.events.find((e) => e.id === 1);
     setEvent(found);
   }, []);
+
+  const handleEventRepsonse = async() => {
+    //FIXME - Add API call for responding to event.
+  }
 
   if (!event) return <div className="p-6">Loading event...</div>;
 
@@ -46,15 +54,44 @@ const SingleEventPage = () => {
               </p>
             </div>
             
-            <div className="inline-flex">
+            <div className="relative inline-flex">
               <button className="bg-white rounded-l-lg px-4 py-2 text-sm border border-gray-300">
-                Respond?
+                {response ? (response === "yes" ? "Response: Yes" : "Response: No") : "Respond?"}
               </button>
-              <button className="bg-white rounded-r-lg px-2 py-1 text-sm border-t border-b border-r border-gray-300">
-                v
-              </button>
-            </div>
 
+              <button
+                className="bg-white rounded-r-lg px-3 py-2 text-sm border-t border-b border-r border-gray-300 flex items-center justify-center"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                type="button"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-600" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M5.293 7.707a1 1 0 011.414 0L10 11l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+
+              {dropdownOpen && (
+                <div className="absolute top-full left-0 right-0 bg-white border border-gray-300 mt-1 rounded-lg shadow z-10">
+                  <button
+                    className="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm"
+                    onClick={() => {
+                      setResponse("yes");
+                      setDropdownOpen(false);
+                    }}
+                  >
+                    Yes
+                  </button>
+                  <button
+                    className="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm"
+                    onClick={() => {
+                      setResponse("no");
+                      setDropdownOpen(false);
+                    }}
+                  >
+                    No
+                  </button>
+                </div>
+              )}
+            </div>
             <div className="mt-4">
               <p className="text-sm text-gray-500 italic">
                 {event.attendees.length} attendee{event.attendees.length !== 1 ? "s" : ""}
