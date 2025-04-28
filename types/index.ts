@@ -22,3 +22,12 @@ export interface Event {
     attendees: Attendee[];
     picture: string;
 }
+
+export type CreateEventData = {
+    name: string;
+    location: string;
+    description: string;
+    isPublic: boolean;
+    createdAt: string;
+    file: File;
+};

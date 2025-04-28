@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type NavbarProps = {
   onSignIn: () => void;
@@ -11,6 +11,18 @@ type NavbarProps = {
 const Navbar = ({ onSignIn, onSignUp }: NavbarProps) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    const name = localStorage.getItem("userName");
+  
+    if (accessToken) {
+      setIsLoggedIn(true);
+      if (name) setUserName(name);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   return (
     <header className="w-full">

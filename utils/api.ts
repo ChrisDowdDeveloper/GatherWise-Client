@@ -1,4 +1,4 @@
-import { CitySuggestions } from "@/types";
+import { CitySuggestions, CreateEventData } from "@/types";
 const backendUrl = "http://localhost:5091/api"
 
 export const fetchCitySuggestions = async (query: string): Promise<CitySuggestions[]> => {
@@ -54,3 +54,25 @@ export const forgotPassword = async(email: string) => {
 
     return res.json();
 }
+
+export const createEvent = async (eventData: CreateEventData) => {
+    const formData = new FormData();
+    formData.append("Name", eventData.name);
+    formData.append("Location", eventData.location);
+    formData.append("Details", eventData.description);
+    formData.append("IsPublic", eventData.isPublic.toString());
+    formData.append("CreatedAt", eventData.createdAt);
+    formData.append("File", eventData.file);
+  
+    const res = await fetch(`${backendUrl}/events`, {
+      method: "POST",
+      body: formData,
+    });
+  
+    if (!res.ok) {
+      throw new Error("Failed to create event");
+    }
+  
+    const data = await res.json();
+    return data;
+  };

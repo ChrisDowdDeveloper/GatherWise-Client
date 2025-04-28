@@ -13,6 +13,7 @@ const SignIn = ({ setAuthMode }: SignInProps) => {
   const handleSignIn = async() => {
     try {
       const user = await signIn(email, password);
+      console.log(user);
       localStorage.setItem("userId", user.userId);
       localStorage.setItem("accessToken", user.accessToken);
       localStorage.setItem("userName", user.name);
